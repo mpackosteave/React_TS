@@ -6,7 +6,7 @@ function Stopwatch() {
   const [running, setRunning] = useState<boolean>(false);
 
   const timeRef = useRef<number | null>(null);
-  const { theme, setTheme } = useContext<{theme: boolean,setTheme: React.Dispatch<React.SetStateAction<boolean>>}>( themeContext );
+  const { theme } = useContext<{theme: boolean,setTheme: React.Dispatch<React.SetStateAction<boolean>>}>( themeContext );
 
   useEffect(() => {
     if (!running) return;
