@@ -11,7 +11,7 @@ const Compteur = () => {
     setCount((prevCount) => prevCount - 1);
   }, []);
 
-  const { theme, setTheme } = useContext<{
+  const { theme } = useContext<{
     theme: boolean;
     setTheme: React.Dispatch<React.SetStateAction<boolean>>;
   }>(themeContext);
@@ -37,7 +37,7 @@ const Compteur = () => {
     </div>
   );
   // todo: documantation sur le hooks personalisable et fais un example de project
-  
+
 };
 
 export default Compteur;
