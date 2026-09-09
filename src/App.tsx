@@ -31,9 +31,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="About" element={<About />}></Route>
-          <Route path="Contact" element={<Contact />}></Route>
-          <Route path="Cart" element={<Cart />}></Route>
-          <Route path="Product" element={<ProductDetail />}></Route>
+          <Route path="contact" element={<Contact />}></Route>
+          <Route path="cart" element={<Cart />}></Route>
+          <Route path="product" element={<ProductDetail />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="faq" element={<Faq />}></Route>
           <Route path="/*" element={<Error />}></Route>
@@ -44,9 +44,9 @@ function App() {
   {
     /* <themeContext.Provider value={{ theme, setTheme }}>
     <Stopwatch />
-  <Compteur />
+    <Compteur />
   </themeContext.Provider>
-  <Costom/> */
+  <Costom /> */
   }
 }
 
