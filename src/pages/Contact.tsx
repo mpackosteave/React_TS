@@ -1,3 +1,4 @@
+import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 
 export default function Contact() {
@@ -26,7 +27,7 @@ export default function Contact() {
               </div>
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-2">Message</label>
-                <textarea rows="5" placeholder="Votre message..." className="w-full px-4 py-3 bg-white border border-slate-300 text-sm focus:outline-none focus:border-slate-900 resize-none"></textarea>
+                <textarea  placeholder="Votre message..." className="w-full px-4 py-3 bg-white border border-slate-300 text-sm focus:outline-none focus:border-slate-900 resize-none"></textarea>
               </div>
               <button type="button" className="px-8 py-3.5 bg-slate-900 text-white text-xs font-semibold uppercase tracking-wider hover:bg-indigo-600 transition-colors">
                 Envoyer le Message
@@ -60,16 +61,7 @@ export default function Contact() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-200 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© 2026 AURA Inc. Tous droits réservés.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-slate-900 transition-colors">Mentions Légales</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Politique de Confidentialité</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">CGV</a>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }

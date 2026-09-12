@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const PRODUCTS = [
   { id: 1, name: 'Casque Studio Minimalist', category: 'Audio', price: 249, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=600&auto=format&fit=crop' },
@@ -98,16 +99,7 @@ export default function Shop() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-200 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© 2026 AURA Inc. Tous droits réservés.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-slate-900 transition-colors">Mentions Légales</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">Politique de Confidentialité</a>
-            <a href="#" className="hover:text-slate-900 transition-colors">CGV</a>
-          </div>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   );
 }
