@@ -1,6 +1,48 @@
+import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import { useCart } from "../hooks/CartContext";
 
 function Home() {
+  const { dispatch} = useCart();
+  const productCards = [
+    {
+      id: 1,
+      name: "Casque Studio Minimalist",
+      category: "Accessoires / Audio",
+      price: 249,
+      imageUrl:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop",
+      isNew: true,
+    },
+    {
+      id: 2,
+      name: "Appareil Optique 35mm",
+      category: "High-Tech",
+      price: 599,
+      imageUrl:
+        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=800&auto=format&fit=crop",
+      isNew: false,
+    },
+    {
+      id: 3,
+      name: "Essence Botanique 50ml",
+      category: "Soin / Beauté",
+      price: 85,
+      imageUrl:
+        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+      isNew: false,
+    },
+    {
+      id: 4,
+      name: "Carnet de Notes Cuir",
+      category: "Papeterie",
+      price: 45,
+      imageUrl:
+        "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop",
+      isNew: false,
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
       {/* NAVBAR */}
@@ -37,7 +79,7 @@ function Home() {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-[4/5] bg-slate-100 overflow-hidden">
+            <div className="aspect-4/5 bg-slate-100 overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop"
                 alt="Produit vedette"
@@ -78,275 +120,79 @@ function Home() {
         {/* Grille de cartes */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Carte Produit 1 */}
-          <div className="group flex flex-col justify-between">
-            <div>
-              <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop"
-                  alt="Casque Audio Studio"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <span className="absolute top-3 left-3 bg-white text-slate-900 text-[10px] uppercase tracking-widest font-bold px-2 py-1">
-                  Nouveau
-                </span>
-                {/* Action Survol : Aperçu Rapide & Favoris */}
-                <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    type="button"
-                    className="p-2 bg-white/90 text-slate-700 hover:text-slate-900 rounded-full shadow-sm hover:bg-white transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+
+          {productCards.map((product) => (
+          
+            <div key={product.id} className="group flex flex-col justify-between">
+              <div>
+                <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <button
+                      type="button"
+                      className="p-2 bg-white/90 text-slate-700 hover:text-slate-900 rounded-full shadow-sm hover:bg-white transition-colors"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
+                      <svg
+                        className="w-4 h-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="1.5"
+                          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-sm font-medium text-slate-900">
-                    Casque Studio Minimalist
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-1">
-                    Accessoires / Audio
+                <div className="flex justify-between items-start mb-4">
+                  <div>
+                    <h3 className="text-sm font-medium text-slate-900">
+                      {product.name}
+                    </h3>
+                    <p className="text-xs text-slate-400 mt-1">
+                      {product.category}
+                    </p>
+                  </div>
+                  <p className="text-sm font-semibold text-slate-900">
+                    {product.price} €
                   </p>
                 </div>
-                <p className="text-sm font-semibold text-slate-900">249 €</p>
               </div>
-            </div>
-            {/* Bouton Action Panier */}
-            <button
-              type="button"
-              className="w-full py-2.5 border border-slate-900 text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center space-x-2"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+              <button
+              onClick={() => dispatch({type: "add_item", payload: product})}
+                type="button"
+                className="w-full py-2.5 border border-slate-900 text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center space-x-2"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              <span>Ajouter au panier</span>
-            </button>
-          </div>
-
-          {/* Carte Produit 2 */}
-          <div className="group flex flex-col justify-between">
-            <div>
-              <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=800&auto=format&fit=crop"
-                  alt="Appareil Photo Vintage"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    type="button"
-                    className="p-2 bg-white/90 text-slate-700 hover:text-slate-900 rounded-full shadow-sm hover:bg-white transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-sm font-medium text-slate-900">
-                    Appareil Optique 35mm
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-1">High-Tech</p>
-                </div>
-                <p className="text-sm font-semibold text-slate-900">599 €</p>
-              </div>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.5"
+                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                  />
+                </svg>
+                <span>Ajouter au panier</span>
+              </button>
             </div>
-            <button
-              type="button"
-              className="w-full py-2.5 border border-slate-900 text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center space-x-2"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              <span>Ajouter au panier</span>
-            </button>
-          </div>
-
-          {/* Carte Produit 3 */}
-          <div className="group flex flex-col justify-between">
-            <div>
-              <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop"
-                  alt="Flacon Parfum"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    type="button"
-                    className="p-2 bg-white/90 text-slate-700 hover:text-slate-900 rounded-full shadow-sm hover:bg-white transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-sm font-medium text-slate-900">
-                    Essence Botanique 50ml
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-1">Soin / Beauté</p>
-                </div>
-                <p className="text-sm font-semibold text-slate-900">85 €</p>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="w-full py-2.5 border border-slate-900 text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center space-x-2"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              <span>Ajouter au panier</span>
-            </button>
-          </div>
-
-          {/* Carte Produit 4 */}
-          <div className="group flex flex-col justify-between">
-            <div>
-              <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
-                <img
-                  src="https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop"
-                  alt="Carnet Cuir"
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <button
-                    type="button"
-                    className="p-2 bg-white/90 text-slate-700 hover:text-slate-900 rounded-full shadow-sm hover:bg-white transition-colors"
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="1.5"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h3 className="text-sm font-medium text-slate-900">
-                    Carnet de Notes Cuir
-                  </h3>
-                  <p className="text-xs text-slate-400 mt-1">Papeterie</p>
-                </div>
-                <p className="text-sm font-semibold text-slate-900">45 €</p>
-              </div>
-            </div>
-            <button
-              type="button"
-              className="w-full py-2.5 border border-slate-900 text-slate-900 text-xs font-semibold uppercase tracking-wider hover:bg-slate-900 hover:text-white transition-colors flex items-center justify-center space-x-2"
-            >
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="1.5"
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              <span>Ajouter au panier</span>
-            </button>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-200 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500">
-          <p>© 2026 AURA Inc. Tous droits réservés.</p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              Mentions Légales
-            </a>
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              Politique de Confidentialité
-            </a>
-            <a href="#" className="hover:text-slate-900 transition-colors">
-              CGV
-            </a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

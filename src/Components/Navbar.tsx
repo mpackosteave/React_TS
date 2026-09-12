@@ -1,9 +1,10 @@
 import { Moon, ShoppingCart, Sun } from "lucide-react";
 import { useTheme } from "../hooks/ThemeHook";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { useCart } from "../hooks/CartContext";
 
 function Navbar() {
+  const { cart } = useCart();
   const navLinks = [
     { name: "Home", path: "/" },
     { name: "Boutique", path: "/shop" },
@@ -12,7 +13,7 @@ function Navbar() {
     { name: "FAQ", path: "/faq" },
   ];
   const { theme, handleThemeToggle } = useTheme();
-  const [count, setCount] = useState(3);
+
   return (
     <header
       className={`sticky top-0 z-50 bg-whit/80 backdrop-blur-md border-b border-slate-200 ${theme ? "bg-black/90" : " text-white"}`}
@@ -31,10 +32,12 @@ function Navbar() {
         <nav className="hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide text-slate-600">
           {navLinks.map((link) => (
             <NavLink
-            key={link.path}
-            to={link.path}
-              className={({isActive}) =>
-                isActive ? "text-slate-900 font-semibold border-b-2 border-indigo-600 pb-1" : "hover:text-slate-900 transition-colors" 
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-slate-900 font-semibold border-b-2 border-indigo-600 pb-1"
+                  : "hover:text-slate-900 transition-colors"
               }
             >
               {link.name}
@@ -60,7 +63,7 @@ function Navbar() {
           >
             <ShoppingCart />
             <span className="absolute -top-1.5 -right-1.5 bg-indigo-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
-              {count}
+              {cart.items.length}
             </span>
           </Link>
         </div>

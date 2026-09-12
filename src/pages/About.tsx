@@ -35,7 +35,7 @@ export default function About() {
         </div>
 
         {/* IMAGE BANNIÈRE */}
-        <div className="my-16 aspect-[21/9] bg-slate-100 overflow-hidden">
+        <div className="my-16 aspect-21/9 bg-slate-100 overflow-hidden">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1200&auto=format&fit=crop"
             alt="Atelier AURA"

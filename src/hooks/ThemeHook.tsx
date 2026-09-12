@@ -49,7 +49,7 @@
 
 
 
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface ThemeContextType {
   theme: boolean;
@@ -60,12 +60,33 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState(false); // true for dark mode, false for light mode
-  localStorage.setItem('theme', theme)
+  // Get the saved theme when the application starts
+  const [theme, setTheme] = useState<boolean>(() => {
+    const savedTheme = localStorage.getItem("theme");
 
+    if (savedTheme) {
+      return JSON.parse(savedTheme);
+    }
+
+    return false; // false = light mode
+  });
+
+  // Toggle theme
   const handleThemeToggle = () => {
     setTheme((prevTheme) => !prevTheme);
   };
+
+  // Save theme whenever it changes
+  useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme));
+
+    // Add/remove Tailwind dark class
+    if (theme) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
 
   return (
     <ThemeContext.Provider
