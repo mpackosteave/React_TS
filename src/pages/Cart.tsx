@@ -1,9 +1,10 @@
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
+import { Button } from "../Components/ui/Button";
 import { useCart } from "../hooks/CartContext";
 
 export default function Cart() {
-  const { cart, dispatch, subtotal,totalttc,taxRate } = useCart();
+  const { cart, dispatch, subtotal, totalttc, taxRate } = useCart();
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
@@ -55,6 +56,7 @@ export default function Cart() {
                         })
                       }
                       type="button"
+                      disabled={item.quantity === 1}
                       className="px-3 py-1 text-xs text-slate-600 hover:bg-slate-100"
                     >
                       -
@@ -127,12 +129,8 @@ export default function Cart() {
               <span>Total HT</span>
               <span>{totalttc} €</span>
             </div>
-            <button
-              type="button"
-              className="w-full py-3.5 bg-slate-900 text-white text-xs font-semibold uppercase tracking-wider hover:bg-indigo-600 transition-colors"
-            >
-              Passer la commande
-            </button>
+
+            <Button title="Passer la commande" intent="danger" />
           </div>
         </div>
       </main>
