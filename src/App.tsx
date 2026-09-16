@@ -9,6 +9,7 @@ import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetails";
 import Faq from "./pages/faq";
 import Shop from "./pages/Shop";
+import ColorGame from "./pages/ColorGame";
 // import Compteur from "./Components/Compteur";
 // import Stopwatch from "./Components/Stopwatch";
 // import Costom from "./Components/useCostomeHooks";
@@ -36,6 +37,7 @@ function App() {
           <Route path="product" element={<ProductDetail />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="faq" element={<Faq />}></Route>
+          <Route path="color-game" element={<ColorGame />}></Route>
           <Route path="/*" element={<Error />}></Route>
         </Routes>
       </BrowserRouter>

@@ -16,20 +16,20 @@ function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 bg-whit/80 backdrop-blur-md border-b border-slate-200 ${theme ? "bg-black/90" : " text-white"}`}
+      className={`sticky top-0 z-50 bg-whit/80 backdrop-blur-md border-b border-slate-200 ${theme ? "bg-black/90 " : " "}`}
     >
       <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
         {/* Logo */}
 
         <Link
-          className="text-xl font-bold tracking-widest uppercase text-slate-900 "
+          className={`"text-xl font-bold tracking-widest uppercase text-slate-900 ${theme ? " text-white" : " "}`}
           to="/"
         >
-          AURA<span className="text-indigo-600">.</span>
+          AURA<span className={`${theme ? "text-white" : ""}text-indigo-600`}>.</span>
         </Link>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide text-slate-600">
+        <nav className={`hidden md:flex items-center space-x-10 text-sm font-medium tracking-wide text-slate-600 ${theme ? "text-white" : " "}`}>
           {navLinks.map((link) => (
             <NavLink
               key={link.path}
@@ -61,7 +61,7 @@ function Navbar() {
             to="/cart"
             className="relative p-2.5 rounded-full text-slate-700 hover:text-slate-900 hover:bg-slate-100 transition-all border border-slate-200"
           >
-            <ShoppingCart />
+            <ShoppingCart className={`${theme ? "text-white" : " "}`} />
             <span className="absolute -top-1.5 -right-1.5 bg-indigo-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
               {cart.items.length}
             </span>
