@@ -10,6 +10,8 @@ import ProductDetail from "./pages/ProductDetails";
 import Faq from "./pages/faq";
 import Shop from "./pages/Shop";
 import ColorGame from "./pages/ColorGame";
+import RegisterForm from "./pages/Form";
+import Counter from "./features/counter/counter";
 // import Compteur from "./Components/Compteur";
 // import Stopwatch from "./Components/Stopwatch";
 // import Costom from "./Components/useCostomeHooks";
@@ -32,11 +34,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="About" element={<About />}></Route>
+          <Route path="form" element={<RegisterForm />}></Route>
           <Route path="contact" element={<Contact />}></Route>
           <Route path="cart" element={<Cart />}></Route>
           <Route path="product" element={<ProductDetail />}></Route>
           <Route path="shop" element={<Shop />}></Route>
           <Route path="faq" element={<Faq />}></Route>
+          <Route path="counter" element={<Counter />}></Route>
           <Route path="color-game" element={<ColorGame />}></Route>
           <Route path="/*" element={<Error />}></Route>
         </Routes>

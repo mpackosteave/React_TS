@@ -2,11 +2,10 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 
 type Product = {
   id: number;
-  name: string;
+  title: string;
   category: string;
   price: number;
-  imageUrl: string;
-  quantity: number;
+  thumbnail: string;
 };
 
 type CartItem = Product & { quantity: number };

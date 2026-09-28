@@ -1,47 +1,75 @@
+import { useEffect, useState } from "react";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import { useCart } from "../hooks/CartContext";
+import type { Product } from "../types/product";
 
 function Home() {
+
+  const [products, setProducts] = useState<Product[]>([]);
+  
+  useEffect(() => {
+    async function getProducts() {
+      try {
+        const response = await fetch('https://dummyjson.com/products')
+
+        if (!response.ok) {
+          console.log("Echec de l'operation")
+          return;
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setProducts(data.products)
+        
+
+      } catch (error) {
+        console.log(error);
+        
+      }
+    }
+    getProducts();
+  },[])
+
   const { dispatch} = useCart();
-  const productCards = [
-    {
-      id: 1,
-      name: "Casque Studio Minimalist",
-      category: "Accessoires / Audio",
-      price: 249,
-      imageUrl:
-        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop",
-      isNew: true,
-    },
-    {
-      id: 2,
-      name: "Appareil Optique 35mm",
-      category: "High-Tech",
-      price: 599,
-      imageUrl:
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=800&auto=format&fit=crop",
-      isNew: false,
-    },
-    {
-      id: 3,
-      name: "Essence Botanique 50ml",
-      category: "Soin / Beauté",
-      price: 85,
-      imageUrl:
-        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
-      isNew: false,
-    },
-    {
-      id: 4,
-      name: "Carnet de Notes Cuir",
-      category: "Papeterie",
-      price: 45,
-      imageUrl:
-        "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop",
-      isNew: false,
-    },
-  ];
+  // const productCards = [
+  //   {
+  //     id: 1,
+  //     name: "Casque Studio Minimalist",
+  //     category: "Accessoires / Audio",
+  //     price: 249,
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=800&auto=format&fit=crop",
+  //     isNew: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Appareil Optique 35mm",
+  //     category: "High-Tech",
+  //     price: 599,
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=800&auto=format&fit=crop",
+  //     isNew: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "Essence Botanique 50ml",
+  //     category: "Soin / Beauté",
+  //     price: 85,
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=800&auto=format&fit=crop",
+  //     isNew: false,
+  //   },
+  //   {
+  //     id: 4,
+  //     name: "Carnet de Notes Cuir",
+  //     category: "Papeterie",
+  //     price: 45,
+  //     imageUrl:
+  //       "https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=800&auto=format&fit=crop",
+  //     isNew: false,
+  //   },
+  // ];
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans antialiased">
@@ -121,14 +149,16 @@ function Home() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Carte Produit 1 */}
 
-          {productCards.map((product) => (
+         
+
+          {products.map((product) => (
           
             <div key={product.id} className="group flex flex-col justify-between">
               <div>
                 <div className="relative aspect-square bg-slate-100 overflow-hidden mb-4">
                   <img
-                    src={product.imageUrl}
-                    alt={product.name}
+                    src={product.thumbnail}
+                    alt={product.thumbnail}
                     className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3 flex flex-col space-y-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -155,7 +185,7 @@ function Home() {
                 <div className="flex justify-between items-start mb-4">
                   <div>
                     <h3 className="text-sm font-medium text-slate-900">
-                      {product.name}
+                      {product.title}
                     </h3>
                     <p className="text-xs text-slate-400 mt-1">
                       {product.category}
