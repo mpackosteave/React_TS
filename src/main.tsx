@@ -4,12 +4,16 @@ import "./index.css";
 import App from "./App.tsx";
 import { ThemeProvider } from "./hooks/ThemeHook.tsx";
 import { CartProvider } from "./hooks/CartContext.tsx";
+import { Provider } from "react-redux";
+import { store } from "./app/store.ts";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider>
       <CartProvider>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </CartProvider>
     </ThemeProvider>
     ,

@@ -30,13 +30,13 @@ export default function Cart() {
               >
                 <div className="flex items-center space-x-6">
                   <img
-                    src={item.imageUrl}
+                    src={item.thumbnail}
                     alt="Casque Studio"
                     className="w-20 h-20 object-cover bg-slate-100"
                   />
                   <div>
                     <h3 className="text-sm font-medium text-slate-900">
-                      {item.name}
+                      {item.title}
                     </h3>
                     <p className="text-xs text-slate-400 mt-1">
                       {item.category}
